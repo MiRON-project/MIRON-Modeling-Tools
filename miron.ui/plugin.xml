@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="miron.ui.commands.GenerateBtCommand"
+            description="Generates extended behavior tree"
+            id="miron.ui.menu.generateBt"
+            name="generateBt">
+      </command>
+      
+      <command
+            defaultHandler="miron.ui.commands.ResolveXpathCommand"
+            description="Resolves references defined with Xpath"
+            id="miron.ui.menu.resolveXpath"
+            name="resolveXpath">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
+         <menu
+               label="MIRoN">
+            <command
+                  commandId="miron.ui.menu.generateBt"
+                  label="Generate Extended Behavior Tree"
+                  style="push">
+            </command>
+            <command
+                  commandId="miron.ui.menu.resolveXpath"
+                  label="Resolve Xpath References"
+                  style="push">
+            </command>
+            <visibleWhen
+	          			checkEnabled="false">
+	       			<with
+	             		variable="selection">
+	          			
+	          			<iterate
+	                		ifEmpty="false"
+	                		operator="and">
+	             			
+	             			<adapt
+	                   			type="org.eclipse.core.resources.IFile">
+	                   			<test property="org.eclipse.core.resources.extension" value="miron" />
+	             			</adapt>
+	          			</iterate>
+	      			 </with>
+	   		 	</visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.sirius.ui.tools.views.model.explorer#PopupMenu">
+            <menu
+               label="MIRoN">
+            <command
+                  commandId="miron.ui.menu.generateBt"
+                  label="Generate Extended Behavior Tree"
+                  style="push">
+            </command>
+            <command
+                  commandId="miron.ui.menu.resolveXpath"
+                  label="Resolve Xpath References"
+                  style="push">
+            </command>
+            <visibleWhen
+	          			checkEnabled="false">
+	       			<with
+	             		variable="selection">
+	          			
+	          			<iterate
+	                		ifEmpty="false"
+	                		operator="and">
+	             			
+	             			<adapt
+	                   			type="org.eclipse.core.resources.IFile">
+	                   			<test property="org.eclipse.core.resources.extension" value="miron" />
+	             			</adapt>
+	          			</iterate>
+	      			 </with>
+	   		 	</visibleWhen>
+         </menu>
+            
+      </menuContribution>
+   </extension>
+</plugin>

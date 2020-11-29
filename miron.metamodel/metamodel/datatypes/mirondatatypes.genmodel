@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/miron.metamodel/src" modelPluginID="miron.metamodel"
+    modelName="Mirondatatypes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../behaviortree.metamodel/metamodel/behaviortree.genmodel#//behaviortree ../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.genmodel#//datatypes ../../../roqme.metamodel/metamodel/expressions/roqmeexpressions.genmodel#//expressions ../../../roqme.metamodel/metamodel/kernel/roqmekernel.genmodel#//kernel"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>mirondatatypes.ecore</foreignModel>
+  <genPackages prefix="Datatypes" basePackage="miron.metamodel" disposableProviderFactory="true"
+      fileExtensions="miron" ecorePackage="mirondatatypes.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mirondatatypes.ecore#//ImpactIntensityEnum">
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/NEGATIVE_HIGH"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/NEGATIVE_MEDIUM"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/NEGATIVE_LOW"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/NEUTRAL"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/POSITIVE_LOW"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/POSITIVE_MEDIUM"/>
+      <genEnumLiterals ecoreEnumLiteral="mirondatatypes.ecore#//ImpactIntensityEnum/POSITIVE_HIGH"/>
+    </genEnums>
+    <genClasses ecoreClass="mirondatatypes.ecore#//BehaviorTreeLiteral">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//BehaviorTreeLiteral/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="mirondatatypes.ecore#//MironModel"/>
+    <genClasses ecoreClass="mirondatatypes.ecore#//BehaviorTreeEnumType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//BehaviorTreeEnumType/literals"/>
+    </genClasses>
+    <genClasses ecoreClass="mirondatatypes.ecore#//NumericSampledType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//NumericSampledType/samples"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mirondatatypes.ecore#//QoSProfiledValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//QoSProfiledValue/impactsOn"/>
+    </genClasses>
+    <genClasses ecoreClass="mirondatatypes.ecore#//QualityImpact">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//QualityImpact/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mirondatatypes.ecore#//QualityImpact/intensity"/>
+    </genClasses>
+    <genClasses ecoreClass="mirondatatypes.ecore#//SampleValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mirondatatypes.ecore#//SampleValue/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

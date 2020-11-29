@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: behaviortree.editor
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: behaviortree.editor; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: behaviortree.metamodel,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.behaviortree.services,
+ org.xtext.behaviortree.parser.antlr.internal,
+ org.xtext.behaviortree.generator,
+ org.xtext.behaviortree.validation,
+ org.xtext.behaviortree.scoping,
+ org.xtext.behaviortree.formatting2,
+ org.xtext.behaviortree,
+ org.xtext.behaviortree.serializer,
+ org.xtext.behaviortree.parser.antlr,
+ org.xtext.behaviortree.parser.antlr.lexer
+Import-Package: org.apache.log4j,
+ org.xtext.roqme.scoping

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="datatypes" nsURI="https://robmosys.eu/miron/datatypes" nsPrefix="miron.datatypes">
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorTreeLiteral" eSuperTypes="../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore#//EnumLiteral #//QoSProfiledValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass ../../../behaviortree.metamodel/metamodel/behaviortree.ecore#//BehaviorTree"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MironModel" eSuperTypes="../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore#//RoqmeModel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorTreeEnumType" eSuperTypes="../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore#//EnumType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literals" lowerBound="1"
+        upperBound="-1" eType="#//BehaviorTreeLiteral" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericSampledType" eSuperTypes="../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore#//NumericType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="samples" lowerBound="1"
+        upperBound="-1" eType="#//SampleValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QoSProfiledValue" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="impacts" upperBound="-1"
+        eType="#//ImpactOnQuality" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactOnQuality">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="ecore:EClass ../../../roqme.metamodel/metamodel/kernel/roqmekernel.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intensity" lowerBound="1"
+        eType="#//ImpactIntensityEnum" defaultValueLiteral="NEUTRAL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SampleValue" eSuperTypes="#//QoSProfiledValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass ../../../roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore#//NumericValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ImpactIntensityEnum">
+    <eLiterals name="NEGATIVE_HIGH"/>
+    <eLiterals name="NEGATIVE_MEDIUM" value="1"/>
+    <eLiterals name="NEGATIVE_LOW" value="2"/>
+    <eLiterals name="NEUTRAL" value="3"/>
+    <eLiterals name="POSITIVE_LOW" value="4"/>
+    <eLiterals name="POSITIVE_MEDIUM" value="5"/>
+    <eLiterals name="POSITIVE_HIGH" value="6"/>
+  </eClassifiers>
+</ecore:EPackage>

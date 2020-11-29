@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: miron.ui
+Bundle-SymbolicName: miron.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: miron.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: miron.generator,
+ org.eclipse.core.commands,
+ org.eclipse.jface.viewers,
+ org.eclipse.ui
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.ui
+Bundle-Vendor: University of Extremadura, University of Málaga, Blue Ocean Robotics

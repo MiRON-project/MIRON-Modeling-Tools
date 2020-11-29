@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mirondatatypes -->
+      <package
+            uri="https://robmosys.eu/miron/datatypes"
+            class="miron.metamodel.datatypes.DatatypesPackage"
+            genModel="metamodel/datatypes/mirondatatypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mironkernel -->
+      <package
+            uri="https://robmosys.eu/miron/kernel"
+            class="miron.metamodel.kernel.KernelPackage"
+            genModel="metamodel/kernel/mironkernel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mironmapping -->
+      <package
+            uri="https://robmosys.eu/miron/mapping"
+            class="miron.metamodel.mapping.MappingPackage"
+            genModel="metamodel/mapping/mironmapping.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,134 @@
+grammar org.xtext.miron.MIRoN with org.xtext.roqme.RoQME
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/behaviortree.metamodel/metamodel/behaviortree.ecore" as behaviortree
+import "platform:/resource/miron.metamodel/metamodel/datatypes/mirondatatypes.ecore" as mirondatatypes
+import "platform:/resource/miron.metamodel/metamodel/kernel/mironkernel.ecore" as mironkernel
+import "platform:/resource/roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore" as roqmedatatypes
+import "platform:/resource/roqme.metamodel/metamodel/expressions/roqmeexpressions.ecore" as roqmeexpressions
+import "platform:/resource/roqme.metamodel/metamodel/kernel/roqmekernel.ecore" as roqmekernel
+
+
+MironModel returns mirondatatypes::MironModel:
+	(description=ElementDescription? 'miron' namespace=EString)?
+	(sentences+=Import)*
+	(dataTypes  += DataTypeDefinition
+	| variables  += TypedVariable
+	| sentences += Sentence)*;
+
+
+/* *********************************
+ * DATATYPE EPACKAGE
+ * *********************************/
+ 
+ @Override
+ Import returns mironkernel::Import:
+ 	'import' importURI=EString ('as' alias=EString)?
+ ;
+ 
+ @Override
+ DataType returns roqmedatatypes::DataType:
+	BooleanType | EnumType | EventType | NumericType | TimeType | NumericSampledType;
+
+ 
+ @Override
+ EnumType returns roqmedatatypes::EnumType:
+ 	BehaviorTreeEnumType | SimpleEnumType
+ ;
+ 
+ NumericSampledType returns mirondatatypes::NumericSampledType:
+ 	'number' ('['cardinality=INT']')?
+ 	(('unit' measurementUnit=EString)?
+ 		& (('(' constraints+=CompactLowerBound ':' constraints+=CompactPrecision ':' constraints+=CompactUpperBound ')')
+ 			| ('(' constraints+=CompactLowerBound ':' constraints+=CompactUpperBound ')'))?	
+ 		& constraints+=NumericTypeConstraint*)
+	'{'
+		samples += SampleValue (',' samples += SampleValue)*
+	'}'
+ ;
+ 
+ SampleValue returns mirondatatypes::SampleValue:
+ 	value = NumericValue 
+ 	'affects' (impacts+=ImpactOnQuality | 
+		('{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}')) 
+ ;
+ 
+ BehaviorTreeEnumType returns mirondatatypes::BehaviorTreeEnumType:
+ 	'enum' ('['cardinality=INT']')?
+ 	'{'
+ 		literals += BehaviorTreeLiteral 
+ 		(',' literals += BehaviorTreeLiteral)*
+ 	'}'
+ ;
+ 
+ BehaviorTreeLiteral returns mirondatatypes::BehaviorTreeLiteral:
+ 	{mirondatatypes::BehaviorTreeLiteral}
+	name=ID ":" (preset?="preset" | reference = [behaviortree::BehaviorTree | QualifiedName])
+	'affects' (impacts+=ImpactOnQuality | 
+		('{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))
+ ;
+
+ImpactOnQuality returns mirondatatypes::ImpactOnQuality:
+	property=[roqmekernel::Property | QualifiedName] intensity=ImpactIntensityEnum
+;
+
+enum ImpactIntensityEnum returns mirondatatypes::ImpactIntensityEnum:
+ 	NEGATIVE_HIGH = '---' | NEGATIVE_MEDIUM = '--' | NEGATIVE_LOW = '-' |
+ 	POSITIVE_HIGH = '+++' | POSITIVE_MEDIUM = '++' | POSITIVE_LOW = '+'
+;
+
+/* *********************************
+ * KERNEL EPACKAGE
+ * *********************************/
+ 
+ @Override
+ TypedVariable returns roqmedatatypes::TypedVariable:
+	Parameter | Timer | GeneralPurposeVariable | Context | BeliefVariable | VariationPoint;
+ 
+ VariationPoint returns mironkernel::VariationPoint:
+ 	'varpoint' name=ID ':' declaration = DataTypeDeclaration
+ 	binding = Binding?
+ ;
+ 
+ Binding returns mironkernel::Binding:
+ 	BtBinding | ArchBinding
+ ;
+ 
+ ArchBinding returns mironkernel::ArchBinding:
+ 	'in' 'arch' 
+ 	'{'
+		(('parameterSetRepository' parameterSetRepository=EString)
+		& ('parameterSet' parameterSet=EString)
+		& ('component' component=EString)
+		& ('parameter'  parameter=EString))
+	'}'
+ ;
+ 
+ BtBinding returns mironkernel::BtBinding:
+ 	insertionType = InsertionTypeEnum
+ 	(xpath=EString)? 
+ 	targets += [ecore::EObject | QualifiedName] 		
+ 		(',' targets += [ecore::EObject | QualifiedName])*
+ ;
+ 
+ enum InsertionTypeEnum returns mironkernel::InsertionTypeEnum:
+ 	IN = 'in' | AFTER = 'after' | BEFORE = 'before'
+ ;
+ 
+ @Override
+ Sentence returns roqmedatatypes::Sentence:
+	Observation | Rule;
+	
+ Rule returns mironkernel::Rule:
+ 	'rule' name=ID ':' condition=Condition? 'implies'
+ 	(implies+=Constraint | ('{' implies+=Constraint (',' implies+=Constraint)+ '}'))
+ ;
+
+ Condition returns mironkernel::Condition:
+ 	term = Term
+ ;
+ 
+ Constraint returns mironkernel::Constraint:
+ 	term = Term
+ ;
+ 

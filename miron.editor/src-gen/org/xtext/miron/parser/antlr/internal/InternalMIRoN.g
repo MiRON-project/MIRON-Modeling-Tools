@@ -998,67 +998,44 @@ ruleBehaviorTreeLiteral returns [EObject current=null]
 				)
 			)
 		)
-		otherlv_5='affects'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getBehaviorTreeLiteralAccess().getAffectsKeyword_4());
-		}
 		(
+			otherlv_5='affects'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getBehaviorTreeLiteralAccess().getAffectsKeyword_4_0());
+			}
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_5_0_0());
-					}
-					lv_impacts_6_0=ruleImpactOnQuality
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getBehaviorTreeLiteralRule());
-						}
-						add(
-							$current,
-							"impacts",
-							lv_impacts_6_0,
-							"org.xtext.miron.MIRoN.ImpactOnQuality");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				otherlv_7='{'
-				{
-					newLeafNode(otherlv_7, grammarAccess.getBehaviorTreeLiteralAccess().getLeftCurlyBracketKeyword_5_1_0());
-				}
-				(
 					(
-						(
-							{
-								newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_5_1_1_0_0());
-							}
-							lv_impacts_8_0=ruleImpactOnQuality
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getBehaviorTreeLiteralRule());
-								}
-								add(
-									$current,
-									"impacts",
-									lv_impacts_8_0,
-									"org.xtext.miron.MIRoN.ImpactOnQuality");
-								afterParserOrEnumRuleCall();
-							}
-						)
-					)
-					(
-						otherlv_9=','
 						{
-							newLeafNode(otherlv_9, grammarAccess.getBehaviorTreeLiteralAccess().getCommaKeyword_5_1_1_1_0());
+							newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_4_1_0_0());
 						}
+						lv_impacts_6_0=ruleImpactOnQuality
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getBehaviorTreeLiteralRule());
+							}
+							add(
+								$current,
+								"impacts",
+								lv_impacts_6_0,
+								"org.xtext.miron.MIRoN.ImpactOnQuality");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				    |
+				(
+					otherlv_7='{'
+					{
+						newLeafNode(otherlv_7, grammarAccess.getBehaviorTreeLiteralAccess().getLeftCurlyBracketKeyword_4_1_1_0());
+					}
+					(
 						(
 							(
 								{
-									newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_5_1_1_1_1_0());
+									newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_4_1_1_1_0_0());
 								}
-								lv_impacts_10_0=ruleImpactOnQuality
+								lv_impacts_8_0=ruleImpactOnQuality
 								{
 									if ($current==null) {
 										$current = createModelElementForParent(grammarAccess.getBehaviorTreeLiteralRule());
@@ -1066,20 +1043,45 @@ ruleBehaviorTreeLiteral returns [EObject current=null]
 									add(
 										$current,
 										"impacts",
-										lv_impacts_10_0,
+										lv_impacts_8_0,
 										"org.xtext.miron.MIRoN.ImpactOnQuality");
 									afterParserOrEnumRuleCall();
 								}
 							)
 						)
-					)*
-				)?
-				otherlv_11='}'
-				{
-					newLeafNode(otherlv_11, grammarAccess.getBehaviorTreeLiteralAccess().getRightCurlyBracketKeyword_5_1_2());
-				}
+						(
+							otherlv_9=','
+							{
+								newLeafNode(otherlv_9, grammarAccess.getBehaviorTreeLiteralAccess().getCommaKeyword_4_1_1_1_1_0());
+							}
+							(
+								(
+									{
+										newCompositeNode(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsImpactOnQualityParserRuleCall_4_1_1_1_1_1_0());
+									}
+									lv_impacts_10_0=ruleImpactOnQuality
+									{
+										if ($current==null) {
+											$current = createModelElementForParent(grammarAccess.getBehaviorTreeLiteralRule());
+										}
+										add(
+											$current,
+											"impacts",
+											lv_impacts_10_0,
+											"org.xtext.miron.MIRoN.ImpactOnQuality");
+										afterParserOrEnumRuleCall();
+									}
+								)
+							)
+						)*
+					)?
+					otherlv_11='}'
+					{
+						newLeafNode(otherlv_11, grammarAccess.getBehaviorTreeLiteralAccess().getRightCurlyBracketKeyword_4_1_1_2());
+					}
+				)
 			)
-		)
+		)?
 	)
 ;
 

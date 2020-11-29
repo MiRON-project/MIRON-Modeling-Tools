@@ -64,8 +64,8 @@ MironModel returns mirondatatypes::MironModel:
  BehaviorTreeLiteral returns mirondatatypes::BehaviorTreeLiteral:
  	{mirondatatypes::BehaviorTreeLiteral}
 	name=ID ":" (preset?="preset" | reference = [behaviortree::BehaviorTree | QualifiedName])
-	'affects' (impacts+=ImpactOnQuality | 
-		('{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))
+	('affects' (impacts+=ImpactOnQuality | 
+		('{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}')))?
  ;
 
 ImpactOnQuality returns mirondatatypes::ImpactOnQuality:

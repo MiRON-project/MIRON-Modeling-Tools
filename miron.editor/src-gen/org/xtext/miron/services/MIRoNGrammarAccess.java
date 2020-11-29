@@ -544,30 +544,31 @@ public class MIRoNGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferenceAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
 		private final CrossReference cReferenceBehaviorTreeCrossReference_3_1_0 = (CrossReference)cReferenceAssignment_3_1.eContents().get(0);
 		private final RuleCall cReferenceBehaviorTreeQualifiedNameParserRuleCall_3_1_0_1 = (RuleCall)cReferenceBehaviorTreeCrossReference_3_1_0.eContents().get(1);
-		private final Keyword cAffectsKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
-		private final Assignment cImpactsAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
-		private final RuleCall cImpactsImpactOnQualityParserRuleCall_5_0_0 = (RuleCall)cImpactsAssignment_5_0.eContents().get(0);
-		private final Group cGroup_5_1 = (Group)cAlternatives_5.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_5_1_0 = (Keyword)cGroup_5_1.eContents().get(0);
-		private final Group cGroup_5_1_1 = (Group)cGroup_5_1.eContents().get(1);
-		private final Assignment cImpactsAssignment_5_1_1_0 = (Assignment)cGroup_5_1_1.eContents().get(0);
-		private final RuleCall cImpactsImpactOnQualityParserRuleCall_5_1_1_0_0 = (RuleCall)cImpactsAssignment_5_1_1_0.eContents().get(0);
-		private final Group cGroup_5_1_1_1 = (Group)cGroup_5_1_1.eContents().get(1);
-		private final Keyword cCommaKeyword_5_1_1_1_0 = (Keyword)cGroup_5_1_1_1.eContents().get(0);
-		private final Assignment cImpactsAssignment_5_1_1_1_1 = (Assignment)cGroup_5_1_1_1.eContents().get(1);
-		private final RuleCall cImpactsImpactOnQualityParserRuleCall_5_1_1_1_1_0 = (RuleCall)cImpactsAssignment_5_1_1_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5_1_2 = (Keyword)cGroup_5_1.eContents().get(2);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cAffectsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Alternatives cAlternatives_4_1 = (Alternatives)cGroup_4.eContents().get(1);
+		private final Assignment cImpactsAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
+		private final RuleCall cImpactsImpactOnQualityParserRuleCall_4_1_0_0 = (RuleCall)cImpactsAssignment_4_1_0.eContents().get(0);
+		private final Group cGroup_4_1_1 = (Group)cAlternatives_4_1.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_4_1_1_0 = (Keyword)cGroup_4_1_1.eContents().get(0);
+		private final Group cGroup_4_1_1_1 = (Group)cGroup_4_1_1.eContents().get(1);
+		private final Assignment cImpactsAssignment_4_1_1_1_0 = (Assignment)cGroup_4_1_1_1.eContents().get(0);
+		private final RuleCall cImpactsImpactOnQualityParserRuleCall_4_1_1_1_0_0 = (RuleCall)cImpactsAssignment_4_1_1_1_0.eContents().get(0);
+		private final Group cGroup_4_1_1_1_1 = (Group)cGroup_4_1_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_1_1_1_0 = (Keyword)cGroup_4_1_1_1_1.eContents().get(0);
+		private final Assignment cImpactsAssignment_4_1_1_1_1_1 = (Assignment)cGroup_4_1_1_1_1.eContents().get(1);
+		private final RuleCall cImpactsImpactOnQualityParserRuleCall_4_1_1_1_1_1_0 = (RuleCall)cImpactsAssignment_4_1_1_1_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_1_1_2 = (Keyword)cGroup_4_1_1.eContents().get(2);
 		
 		//BehaviorTreeLiteral mirondatatypes::BehaviorTreeLiteral:
 		//	{mirondatatypes::BehaviorTreeLiteral} name=ID ":" (preset?="preset" |
-		//	reference=[behaviortree::BehaviorTree|QualifiedName])
-		//	'affects' (impacts+=ImpactOnQuality | '{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}');
+		//	reference=[behaviortree::BehaviorTree|QualifiedName]) ('affects' (impacts+=ImpactOnQuality | '{'
+		//	(impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{mirondatatypes::BehaviorTreeLiteral} name=ID ":" (preset?="preset" |
-		//reference=[behaviortree::BehaviorTree|QualifiedName]) 'affects' (impacts+=ImpactOnQuality | '{'
-		//(impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}')
+		//reference=[behaviortree::BehaviorTree|QualifiedName]) ('affects' (impacts+=ImpactOnQuality | '{'
+		//(impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))?
 		public Group getGroup() { return cGroup; }
 		
 		//{mirondatatypes::BehaviorTreeLiteral}
@@ -600,47 +601,50 @@ public class MIRoNGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getReferenceBehaviorTreeQualifiedNameParserRuleCall_3_1_0_1() { return cReferenceBehaviorTreeQualifiedNameParserRuleCall_3_1_0_1; }
 		
+		//('affects' (impacts+=ImpactOnQuality | '{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'affects'
-		public Keyword getAffectsKeyword_4() { return cAffectsKeyword_4; }
+		public Keyword getAffectsKeyword_4_0() { return cAffectsKeyword_4_0; }
 		
 		//impacts+=ImpactOnQuality | '{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'
-		public Alternatives getAlternatives_5() { return cAlternatives_5; }
+		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
 		
 		//impacts+=ImpactOnQuality
-		public Assignment getImpactsAssignment_5_0() { return cImpactsAssignment_5_0; }
+		public Assignment getImpactsAssignment_4_1_0() { return cImpactsAssignment_4_1_0; }
 		
 		//ImpactOnQuality
-		public RuleCall getImpactsImpactOnQualityParserRuleCall_5_0_0() { return cImpactsImpactOnQualityParserRuleCall_5_0_0; }
+		public RuleCall getImpactsImpactOnQualityParserRuleCall_4_1_0_0() { return cImpactsImpactOnQualityParserRuleCall_4_1_0_0; }
 		
 		//'{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'
-		public Group getGroup_5_1() { return cGroup_5_1; }
+		public Group getGroup_4_1_1() { return cGroup_4_1_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5_1_0() { return cLeftCurlyBracketKeyword_5_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_4_1_1_0() { return cLeftCurlyBracketKeyword_4_1_1_0; }
 		
 		//(impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)?
-		public Group getGroup_5_1_1() { return cGroup_5_1_1; }
+		public Group getGroup_4_1_1_1() { return cGroup_4_1_1_1; }
 		
 		//impacts+=ImpactOnQuality
-		public Assignment getImpactsAssignment_5_1_1_0() { return cImpactsAssignment_5_1_1_0; }
+		public Assignment getImpactsAssignment_4_1_1_1_0() { return cImpactsAssignment_4_1_1_1_0; }
 		
 		//ImpactOnQuality
-		public RuleCall getImpactsImpactOnQualityParserRuleCall_5_1_1_0_0() { return cImpactsImpactOnQualityParserRuleCall_5_1_1_0_0; }
+		public RuleCall getImpactsImpactOnQualityParserRuleCall_4_1_1_1_0_0() { return cImpactsImpactOnQualityParserRuleCall_4_1_1_1_0_0; }
 		
 		//(',' impacts+=ImpactOnQuality)*
-		public Group getGroup_5_1_1_1() { return cGroup_5_1_1_1; }
+		public Group getGroup_4_1_1_1_1() { return cGroup_4_1_1_1_1; }
 		
 		//','
-		public Keyword getCommaKeyword_5_1_1_1_0() { return cCommaKeyword_5_1_1_1_0; }
+		public Keyword getCommaKeyword_4_1_1_1_1_0() { return cCommaKeyword_4_1_1_1_1_0; }
 		
 		//impacts+=ImpactOnQuality
-		public Assignment getImpactsAssignment_5_1_1_1_1() { return cImpactsAssignment_5_1_1_1_1; }
+		public Assignment getImpactsAssignment_4_1_1_1_1_1() { return cImpactsAssignment_4_1_1_1_1_1; }
 		
 		//ImpactOnQuality
-		public RuleCall getImpactsImpactOnQualityParserRuleCall_5_1_1_1_1_0() { return cImpactsImpactOnQualityParserRuleCall_5_1_1_1_1_0; }
+		public RuleCall getImpactsImpactOnQualityParserRuleCall_4_1_1_1_1_1_0() { return cImpactsImpactOnQualityParserRuleCall_4_1_1_1_1_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5_1_2() { return cRightCurlyBracketKeyword_5_1_2; }
+		public Keyword getRightCurlyBracketKeyword_4_1_1_2() { return cRightCurlyBracketKeyword_4_1_1_2; }
 	}
 	public class ImpactOnQualityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.miron.MIRoN.ImpactOnQuality");
@@ -1341,8 +1345,8 @@ public class MIRoNGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//BehaviorTreeLiteral mirondatatypes::BehaviorTreeLiteral:
 	//	{mirondatatypes::BehaviorTreeLiteral} name=ID ":" (preset?="preset" |
-	//	reference=[behaviortree::BehaviorTree|QualifiedName])
-	//	'affects' (impacts+=ImpactOnQuality | '{' (impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}');
+	//	reference=[behaviortree::BehaviorTree|QualifiedName]) ('affects' (impacts+=ImpactOnQuality | '{'
+	//	(impacts+=ImpactOnQuality (',' impacts+=ImpactOnQuality)*)? '}'))?;
 	public BehaviorTreeLiteralElements getBehaviorTreeLiteralAccess() {
 		return pBehaviorTreeLiteral;
 	}

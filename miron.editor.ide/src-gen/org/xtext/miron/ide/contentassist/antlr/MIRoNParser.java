@@ -37,7 +37,7 @@ public class MIRoNParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericSampledTypeAccess().getAlternatives_2_1(), "rule__NumericSampledType__Alternatives_2_1");
 					put(grammarAccess.getSampleValueAccess().getAlternatives_2(), "rule__SampleValue__Alternatives_2");
 					put(grammarAccess.getBehaviorTreeLiteralAccess().getAlternatives_3(), "rule__BehaviorTreeLiteral__Alternatives_3");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getAlternatives_5(), "rule__BehaviorTreeLiteral__Alternatives_5");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getAlternatives_4_1(), "rule__BehaviorTreeLiteral__Alternatives_4_1");
 					put(grammarAccess.getTypedVariableAccess().getAlternatives(), "rule__TypedVariable__Alternatives");
 					put(grammarAccess.getBindingAccess().getAlternatives(), "rule__Binding__Alternatives");
 					put(grammarAccess.getSentenceAccess().getAlternatives(), "rule__Sentence__Alternatives");
@@ -101,9 +101,10 @@ public class MIRoNParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBehaviorTreeEnumTypeAccess().getGroup_1(), "rule__BehaviorTreeEnumType__Group_1__0");
 					put(grammarAccess.getBehaviorTreeEnumTypeAccess().getGroup_4(), "rule__BehaviorTreeEnumType__Group_4__0");
 					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup(), "rule__BehaviorTreeLiteral__Group__0");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_5_1(), "rule__BehaviorTreeLiteral__Group_5_1__0");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_5_1_1(), "rule__BehaviorTreeLiteral__Group_5_1_1__0");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_5_1_1_1(), "rule__BehaviorTreeLiteral__Group_5_1_1_1__0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_4(), "rule__BehaviorTreeLiteral__Group_4__0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_4_1_1(), "rule__BehaviorTreeLiteral__Group_4_1_1__0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_4_1_1_1(), "rule__BehaviorTreeLiteral__Group_4_1_1_1__0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getGroup_4_1_1_1_1(), "rule__BehaviorTreeLiteral__Group_4_1_1_1_1__0");
 					put(grammarAccess.getImpactOnQualityAccess().getGroup(), "rule__ImpactOnQuality__Group__0");
 					put(grammarAccess.getVariationPointAccess().getGroup(), "rule__VariationPoint__Group__0");
 					put(grammarAccess.getArchBindingAccess().getGroup(), "rule__ArchBinding__Group__0");
@@ -268,9 +269,9 @@ public class MIRoNParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBehaviorTreeLiteralAccess().getNameAssignment_1(), "rule__BehaviorTreeLiteral__NameAssignment_1");
 					put(grammarAccess.getBehaviorTreeLiteralAccess().getPresetAssignment_3_0(), "rule__BehaviorTreeLiteral__PresetAssignment_3_0");
 					put(grammarAccess.getBehaviorTreeLiteralAccess().getReferenceAssignment_3_1(), "rule__BehaviorTreeLiteral__ReferenceAssignment_3_1");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_5_0(), "rule__BehaviorTreeLiteral__ImpactsAssignment_5_0");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_5_1_1_0(), "rule__BehaviorTreeLiteral__ImpactsAssignment_5_1_1_0");
-					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_5_1_1_1_1(), "rule__BehaviorTreeLiteral__ImpactsAssignment_5_1_1_1_1");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_4_1_0(), "rule__BehaviorTreeLiteral__ImpactsAssignment_4_1_0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_4_1_1_1_0(), "rule__BehaviorTreeLiteral__ImpactsAssignment_4_1_1_1_0");
+					put(grammarAccess.getBehaviorTreeLiteralAccess().getImpactsAssignment_4_1_1_1_1_1(), "rule__BehaviorTreeLiteral__ImpactsAssignment_4_1_1_1_1_1");
 					put(grammarAccess.getImpactOnQualityAccess().getPropertyAssignment_0(), "rule__ImpactOnQuality__PropertyAssignment_0");
 					put(grammarAccess.getImpactOnQualityAccess().getIntensityAssignment_1(), "rule__ImpactOnQuality__IntensityAssignment_1");
 					put(grammarAccess.getVariationPointAccess().getNameAssignment_1(), "rule__VariationPoint__NameAssignment_1");

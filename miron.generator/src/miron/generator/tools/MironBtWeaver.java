@@ -2,6 +2,7 @@ package miron.generator.tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -104,15 +105,15 @@ public class MironBtWeaver {
 	}
 	
 	private void weaveVpAsSubtree(TreeNode target, VariationPoint vp) {
-		BehaviorTreeFactory btFactory = BehaviorTreeFactory.eINSTANCE;
 		InsertionTypeEnum insertionType = ((BtBinding)vp.getBinding()).getInsertionType();
-		EObject parent = target.eContainer();
+		
 		EList<TreeNode> nodes = null;
+		EObject parent;
 		Switch sw;
-		Parallel parallel;
-		Repeat repeat;
-		Action action;
 		int index;
+		
+		createParallelMonitoring(target, vp);
+		parent = target.eContainer();
 		
 		if(parent instanceof ControlNode) {
 			nodes = ((ControlNode) parent).getNodes();
@@ -125,38 +126,23 @@ public class MironBtWeaver {
 					+ target.toString() + ")");
 		}
 			
-		if(nodes != null) {
-			action = btFactory.createAction();
-			action.getAttributes().add(createAttribute("ID", "VariantAction"));
-			action.getAttributes().add(createAttribute("value", "{" + vp.getName() + "_sel}"));
-
-			repeat = btFactory.createRepeat();
-			repeat.getAttributes().add(createAttribute("num_cycles", "-1"));
-			repeat.setNode(action);
-			
+		if(nodes != null) {			
 			sw = createSwitchVarpoint(vp);
-			
-			parallel = btFactory.createParallel();
-			parallel.getAttributes().add(createAttribute("failure_threshold", "1"));
-			parallel.getAttributes().add(createAttribute("success_threshold", "1"));
-			parallel.getNodes().add(repeat);
-			parallel.getNodes().add(sw);
-			
 			index = nodes.indexOf(target);
 				
 			if(index >= 0) {
 				if(insertionType == InsertionTypeEnum.BEFORE) {
-					nodes.add(index, parallel);
+					nodes.add(index, sw);
 				}
 				else if(insertionType == InsertionTypeEnum.AFTER) {
 					if (index + 2 < nodes.size()) {
-						nodes.add(index + 1, parallel);
+						nodes.add(index + 1, sw);
 					} else {
-						nodes.add(parallel);
+						nodes.add(sw);
 					}
 				}
 				else if(insertionType == InsertionTypeEnum.IN) {
-					nodes.add(index, parallel);
+					nodes.add(index, sw);
 					sw.getNodes().add(target); // Removes the node from the original list and adds it to sw
 				}
 				else {
@@ -195,6 +181,55 @@ public class MironBtWeaver {
 		}
 		else {
 			LOG.error("Unsupported insertion type for a numeric target");
+		}
+	}
+	
+	private void createParallelMonitoring(TreeNode target, VariationPoint vp) {
+		
+		BehaviorTree bt = getContainerTree(target);
+		BehaviorTreeFactory btFactory = BehaviorTreeFactory.eINSTANCE;
+		TreeNode node; 
+		Repeat repeat;
+		
+		if((node = getNode(bt, "monitoring_parallel")) == null) {
+		
+			Action action = btFactory.createAction();
+			action.getAttributes().add(createAttribute("ID", "VariantAction"));
+			action.getAttributes().add(createAttribute("value", "{" + vp.getName() + "_sel}"));
+	
+			repeat = btFactory.createRepeat();
+			repeat.getAttributes().add(createAttribute("name", "monitoring_repeat"));
+			repeat.getAttributes().add(createAttribute("num_cycles", "-1"));
+			repeat.setNode(action);
+	
+			Parallel parallel = btFactory.createParallel();
+			parallel.getAttributes().add(createAttribute("name", "monitoring_parallel"));
+			parallel.getAttributes().add(createAttribute("failure_threshold", "1"));
+			parallel.getAttributes().add(createAttribute("success_threshold", "1"));
+			parallel.getNodes().add(repeat);
+			
+			parallel.getNodes().addAll(bt.getNodes()); // Removes nodes from bt and adds them into parallel
+			bt.getNodes().add(0, parallel);
+		}
+		else if(node instanceof Parallel) { // The parallel node already exists
+			
+			if((node = getNode((Parallel) node, "monitoring_repeat")) instanceof Repeat) {
+				repeat = (Repeat) node;
+				
+				Action action = btFactory.createAction();
+				action.getAttributes().add(createAttribute("ID", "VariantAction"));
+				action.getAttributes().add(createAttribute("value", "{" + vp.getName() + "_sel}"));
+				
+				if(repeat.getNode() instanceof Sequence) {
+					((Sequence)repeat.getNode()).getNodes().add(action);
+				}
+				else {
+					Sequence sequence = btFactory.createSequence();
+					sequence.getNodes().add(repeat.getNode());
+					sequence.getNodes().add(action);
+					repeat.setNode(sequence);
+				}
+			}	
 		}
 	}
 	
@@ -301,6 +336,56 @@ public class MironBtWeaver {
 				if(lit instanceof BehaviorTreeLiteral) {
 					result.add((BehaviorTreeLiteral)lit);
 				}
+			}
+		}
+		return result;
+	}
+	
+	private TreeNode getNode(BehaviorTree bt, String nodeName) {
+		TreeNode result = null;
+		TreeNode node;
+		Attribute att;
+		Iterator<TreeNode> iterator = bt.getNodes().iterator();
+		
+		while(result == null && iterator.hasNext()) {
+			node = iterator.next();
+			
+			if((att = getAttribute(node, "name")) != null
+					&& att.getValue().equalsIgnoreCase(nodeName))
+			{
+				result = node;
+			}
+		}
+		return result;
+	}
+	
+	private TreeNode getNode(ControlNode controlNode, String nodeName) {
+		TreeNode result = null;
+		TreeNode aux;
+		Attribute att;
+		Iterator<TreeNode> iterator = controlNode.getNodes().iterator();
+		
+		while(result == null && iterator.hasNext()) {
+			aux = iterator.next();
+			
+			if((att = getAttribute(aux, "name")) != null
+					&& att.getValue().equalsIgnoreCase(nodeName))
+			{
+				result = aux;
+			}
+		}
+		return result;
+	}
+	
+	private Attribute getAttribute(TreeNode node, String name) {
+		Attribute result = null;
+		Attribute att;
+		Iterator<Attribute> iterator = node.getAttributes().iterator();
+	
+		while(result == null && iterator.hasNext()) {
+			att = iterator.next();
+			if(att.getName().equalsIgnoreCase(name)) {
+				result = att;
 			}
 		}
 		return result;

@@ -23,6 +23,7 @@ public class MIRoNSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected MIRoNGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AggregationFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q;
 	protected AbstractElementAlias match_ArithFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q;
+	protected AbstractElementAlias match_BehaviorTreeLiteral___AffectsKeyword_4_0_LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q;
 	protected AbstractElementAlias match_CollectionFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q;
 	protected AbstractElementAlias match_PatternFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q;
 	protected AbstractElementAlias match_PrimaryTerm_LeftParenthesisKeyword_0_0_a;
@@ -33,6 +34,7 @@ public class MIRoNSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (MIRoNGrammarAccess) access;
 		match_AggregationFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getAggregationFunctionAccess().getLeftParenthesisKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getAggregationFunctionAccess().getRightParenthesisKeyword_2_2()));
 		match_ArithFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getArithFunctionAccess().getLeftParenthesisKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getArithFunctionAccess().getRightParenthesisKeyword_2_2()));
+		match_BehaviorTreeLiteral___AffectsKeyword_4_0_LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getBehaviorTreeLiteralAccess().getAffectsKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getBehaviorTreeLiteralAccess().getLeftCurlyBracketKeyword_4_1_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorTreeLiteralAccess().getRightCurlyBracketKeyword_4_1_1_2()));
 		match_CollectionFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getCollectionFunctionAccess().getLeftParenthesisKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getCollectionFunctionAccess().getRightParenthesisKeyword_2_2()));
 		match_PatternFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPatternFunctionAccess().getLeftParenthesisKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getPatternFunctionAccess().getRightParenthesisKeyword_2_2()));
 		match_PrimaryTerm_LeftParenthesisKeyword_0_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryTermAccess().getLeftParenthesisKeyword_0_0());
@@ -55,6 +57,8 @@ public class MIRoNSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AggregationFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ArithFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q.equals(syntax))
 				emit_ArithFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BehaviorTreeLiteral___AffectsKeyword_4_0_LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q.equals(syntax))
+				emit_BehaviorTreeLiteral___AffectsKeyword_4_0_LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CollectionFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q.equals(syntax))
 				emit_CollectionFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PatternFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q.equals(syntax))
@@ -86,6 +90,18 @@ public class MIRoNSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ArithFtnEnum (ambiguity) (rule end)
 	 */
 	protected void emit_ArithFunction___LeftParenthesisKeyword_2_0_RightParenthesisKeyword_2_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('affects' '{' '}')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     preset?='preset' (ambiguity) (rule end)
+	 *     reference=[BehaviorTree|QualifiedName] (ambiguity) (rule end)
+	 */
+	protected void emit_BehaviorTreeLiteral___AffectsKeyword_4_0_LeftCurlyBracketKeyword_4_1_1_0_RightCurlyBracketKeyword_4_1_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
